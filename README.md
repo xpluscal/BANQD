@@ -1,20 +1,13 @@
-![](http://image.prntscr.com/image/762fac151662412b9fa870126b72669a.png)
-
-<br/>
-<br/>
-<br/>
-
-
-# HTML5 SCSS Boilerplate
+# BANQD
 
 ### Clone the repo for your project
 ```
-git clone https://github.com/kingRayhan/html5-scss-boilerplate.git
+git clone https://github.com/xpluscal/BANQD.git
 ```
 
 ## Navigate to project directory
 ```
-cd html5-scss-boilerplate
+cd banqd
 ```
 
 ### Generate `style.css` file by compiling scss files
@@ -26,21 +19,15 @@ sass --watch assets/styles/style.scss:style.css
 <br>
 <br>
 <br><br>
-<br>
-<br>
+
 
 # File architecture
-<img src="http://i.imgur.com/yRp0ZSG.png">
-<a href="http://i.imgur.com/yRp0ZSG.png" target="_blank">See in better resolution</a>
-<br>
-<br>
-<br>
+
 
 > All assets file like images , javascripts , scss including third-party libraries will be in the `assets` folder. Only markup files ( .html , .php , .rb , .asp ...) and main style sheet ( style.css which will come in after compiling scss files ).
 
 
-
-# Assets directory difination
+# Assets directory definition
 
 * **image/** - Contains all images
 * **plugins/** - All third-party libraries like wow.js , animate.css , bootstrap will be here. By default this framework included 4 libraries. They are -
