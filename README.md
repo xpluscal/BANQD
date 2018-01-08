@@ -1,13 +1,8 @@
 # BANQD
 
-### Installing
+# Installation
 ```
 git clone https://github.com/xpluscal/BANQD.git
-```
-
-## Navigate to project directory
-```
-cd banqd
 ```
 
 # File architecture
