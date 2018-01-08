@@ -1,0 +1,63 @@
+//main: ../style.scss
+@import "../../plugins/materialize-src/sass/components/color";
+
+body#dashboard,html{
+  height: auto;
+  position: relative;
+}
+
+body#dashboard{
+
+  &::before {
+    background-image: linear-gradient(#F8F8F8, #fff);
+    opacity: 0.0;
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0; left: 0;
+    opacity: 0;
+    width: 100%;
+    z-index: -1;
+    @include transition(all 0.3s ease);
+  }
+
+  nav{
+      padding: 0px 16px;
+      ul a{
+        @extend .grey-text, .text-darken-4;
+      }
+      ul li.active{
+        background-color: transparent;
+        a{
+          border-bottom: 2px solid rgba(0,0,0,0.2);
+        }
+      }
+  }
+
+  .transaction-list{
+    ul li{
+      display: block !important;
+    }
+  }
+
+  .collection .collection-item.avatar .title{
+    display: block;
+    margin-top: 9px;
+  }
+
+  .positive-amount{
+    @extend .green-text, .text-accent-3;
+  }
+
+  .negative-amount{
+    @extend .red-text, .text-accent-3;
+  }
+
+  .flex {
+    @include flexbox;
+    @include align-items(center);
+    @include justify-content(flex-start);
+  }
+
+}

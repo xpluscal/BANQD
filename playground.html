@@ -1,0 +1,86 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <title>PLAYGROUND</title>
+<!-- <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
+
+    <link rel="stylesheet" href="assets/plugins/meanMenu/meanmenu.min.css">
+    <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/abel/stylesheet.css">
+
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="assets/plugins/Modernizr/modernizr-2.8.3.min.js"></script>
+
+</head>
+
+<body>
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <header class="hero-area login-area">
+        <div class="hero-content">
+          <div class="login-body">
+            <span class="logo-text">BANQD</span>
+            <div class="login-wrapper">
+              <form id="login-form" action="login.php" method="post">
+                <div class="form-group">
+                  <input id="login-email" type="email" name="Email" required="required">
+                  <label class="control-label" for="input">E-Mail</label><i class="bar"></i>
+                </div>
+              </form>
+              <button class="button login-submit login-button inactive" data-toggle="modal" data-target="#loginProcessWrapper" form="login-form" value="Login"><span>Login</span></button>
+            </div>
+          </div>
+        </div>
+    </header>
+
+    <div class="modal login-process" id="loginProcessWrapper" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+
+            <!-- Login Process Visualization, should be used as popup / iframe -->
+
+            <div id="login-feedback">
+
+              <div id="login-visualization">
+                <div class="in-progress">
+                  <div id="login-lock"></div>
+                  <canvas id="waves"></canvas>
+                  <div id="login-phone"></div>
+                </div>
+                <div class="success">
+                  <img class="check" src="assets/plugins/idee/assets/images/check.svg" />
+                </div>
+              </div>
+
+              <div id="login-info">
+                <b>Approve Login</b> with your <b>phone</b>.
+              </div>
+
+            </div>
+
+            <!-- End Process Visualization -->
+
+          </div>
+        </div>
+      </div>
+      <span id="poweredbyidee">powered by IDEE</span>
+    </div>
+
+
+    <script src="assets/plugins/jquery/jquery-1.11.2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/plugins/meanMenu/jquery.meanmenu.min.js"></script>
+    <script src="assets/plugins/sine-waves/sine-waves.min.js"></script>
+    <script src="assets/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+//out: ../../style.css
+
+@charset 'UTF-8';
+// Configuration and helpers
+// -------------------------------
+@import 'abstracts/variables';
+@import 'abstracts/functions';
+@import 'abstracts/mixins';
+@import 'abstracts/flex';
+@import 'abstracts/mixins-base';
+@import 'abstracts/mixins-master';
+/**
+ * ---------------------------------------------------
+ * 	Table of contents
+ * ---------------------------------------------------
+ */
+/**----------
+	1. Base
+		1.1 base
+		1.2 Fonts
+		1.3 Typography
+		1.4 Helpers
+	2. Sections
+		2.1 Header
+		2.2 Footer
+	3. Components
+		3.1 Buttons
+	4. Pages
+		4.1 Home page
+	5. Themes
+		5.1 Default Theme
+
+
+---------------*/
+/**
+ * ---------------------------------------------------
+ * 	1.  Base
+ * ---------------------------------------------------
+ */
+
+/* --------------------- 1.1 Base --------------------- */
+@import 'base/base';
+/* --------------------- 1.2 Fonts --------------------- */
+@import 'base/fonts';
+/* --------------------- 1.3 Typography --------------------- */
+@import 'base/typography';
+/* --------------------- 1.4 Helpers --------------------- */
+@import 'base/helpers';
+
+/**
+ * ---------------------------------------------------
+ * 	2.  Sections
+ * ---------------------------------------------------
+ */
+/* --------------------- 2.1 Header --------------------- */
+@import 'layout/header';
+/* --------------------- 2.2 Footer --------------------- */
+@import 'layout/footer';
+
+/**
+ * ---------------------------------------------------
+ * 	3.  Components
+ * ---------------------------------------------------
+ */
+/* --------------------- 3.1 Buttons --------------------- */
+@import 'components/button';
+@import 'components/forms';
+@import 'components/loginProcess';
+@import 'components/dashboard';
+
+
+/* --------------------- 3.2 Animations --------------------- */
+@import 'components/animations';
+
+
+/**
+ * ---------------------------------------------------
+ * 	4.  Pages
+ * ---------------------------------------------------
+ */
+/* --------------------- 4.1 Home page --------------------- */
+@import 'pages/home';
+
+/**
+ * ---------------------------------------------------
+ * 	5.  Themes
+ * ---------------------------------------------------
+ */
+/* --------------------- 5.1 Default Theme --------------------- */
+@import 'themes/default';

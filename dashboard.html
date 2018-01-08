@@ -1,0 +1,208 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>BANQD - revolutionizing payments</title>
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="assets/fonts/abel/stylesheet.css">
+    <link rel="stylesheet" href="assets/plugins/idee/assets/plugins/tingle.min.css">
+    <link rel="stylesheet" href="assets/plugins/idee/assets/css/idee-login.min.css">
+
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/plugins/materialize-src/css/materialize.min.css" />
+    <script src="assets/plugins/Modernizr/modernizr-2.8.3.min.js"></script>
+
+</head>
+
+<body id="dashboard">
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+      <nav class="transparent z-depth-0">
+       <div class="nav-wrapper">
+         <a href="/banqd" class="brand-logo grey-text text-darken-4">BANQD</a>
+         <ul id="nav-mobile" class="right hide-on-med-and-down">
+           <li class="active"><a href="#">Dashboard</a></li>
+           <li><a href="#">Statistics</a></li>
+           <li><a href="#">Messages <span class="new badge red circle" data-badge-caption="new">4</span></a></li>
+           <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Johann Sieglof <i class="material-icons right">arrow_drop_down</i></a></li>
+         </ul>
+       </div>
+     </nav>
+
+     <div class="container transparent z-depth-0">
+       <div class="row">
+          <div class="col m4 s12">
+            <div class="balance-summary">
+              <h1 class="supersize balance-total left-align"><span class="amount-animate">1758.39</span><span class="currency">€</span></h1>
+            </div>
+          </div>
+          <!-- <div class="col m4 s6 valign-wrapper">
+            <h5>+7893.19€</h5>
+          </div> -->
+        </div>
+        <div class="row">
+          <div class="col l7 m12 s12">
+            <div class="transaction-list">
+              <ul class="collection">
+                <li class="collection-item avatar waves-effect waves-dark">
+                  <img src="assets/images/icons/shopping@2x.png" alt="" class="circle">
+                  <span class="title">Coffee Fellows</span>
+                  <p>November 13</p>
+                  <a href="#!" class="secondary-content negative-amount">-7,59 €</a>
+                </li>
+                <li class="collection-item avatar waves-effect waves-dark">
+                  <img src="assets/images/icons/shopping@2x.png" alt="" class="circle">
+                  <span class="title">Rewe AG</span>
+                  <p>November 13</p>
+                  <a href="#!" class="secondary-content negative-amount">-43,39 €</a>
+                </li>
+                <li class="collection-item avatar waves-effect waves-dark">
+                  <img src="assets/images/icons/shopping@2x.png" alt="" class="circle">
+                  <span class="title">Deutsche Post</span>
+                  <p>November 12</p>
+                  <a href="#!" class="secondary-content negative-amount">-6,49 €</a>
+                </li>
+                <li class="collection-item avatar waves-effect waves-dark">
+                  <img src="assets/images/icons/shopping@2x.png" alt="" class="circle">
+                  <span class="title">Q Company</span>
+                  <p>November 11</p>
+                  <a href="#!" class="secondary-content positive-amount">+2.500 €</a>
+                </li>
+                <li class="collection-item avatar waves-effect waves-dark">
+                  <img src="assets/images/icons/shopping@2x.png" alt="" class="circle">
+                  <span class="title">Aral Süd GmbHs</span>
+                  <p>November 11</p>
+                  <a href="#!" class="secondary-content negative-amount">-7,59 €</a>
+                </li>
+                <li class="collection-item avatar waves-effect waves-dark">
+                  <img src="assets/images/icons/shopping@2x.png" alt="" class="circle">
+                  <span class="title">Deutsche Bahn AG</span>
+                  <p>November 10</p>
+                  <a href="#!" class="secondary-content negative-amount">-119,90 €</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col l4 offset-l1 m12 s12">
+
+
+            <div class="transaction-new">
+
+
+              <form class="col s12">
+                <div class="row">
+                  <div class="col s12">
+                    <h5>New Transaction</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input placeholder="John Doe" id="beneficiary" type="text" class="validate">
+                    <label for="beneficiary">Beneficiary</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input placeholder="DE1491996299206959" id="iban" type="text" class="validate">
+                    <label for="iban">IBAN</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input placeholder="HYVEDEMMXXX" id="bic" type="text" class="validate">
+                    <label for="bic">Swift (BIC)</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input disabled value="Will be automatically inserted" id="disabled" type="text" class="validate">
+                    <label for="disabled">Institute</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <span class="prefix">€</span>
+                    <input placeholder="0.00" id="bic" type="text" class="validate">
+                    <label for="bic">Amount</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input id="purpose" type="text" class="validate">
+                    <label for="purpose">Intended Purpose</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col l6 m12 s12">
+                    <input type="checkbox" id="test5" />
+                    <label for="test5">Save Beneficiary for future transactions</label>
+                  </div>
+                  <div class="col l6 m12 s12">
+                    <button class="btn waves-effect waves-light login-submit login-button inactive trigger-sign" form="login-form" value="Login"><span>Sign Transaction</span></button>
+                    <!-- <input class="btn waves-effect waves-light" type="submit" value="Sign Transaction" /> -->
+                  </div>
+                </div>
+              </form>
+
+            </div>
+
+
+            <div class="stats">
+
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="modal login-process" id="loginProcessWrapper" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+
+            <!-- Login Process Visualization, should be used as popup / iframe -->
+
+            <div id="login-feedback">
+
+              <div id="login-visualization">
+                <div class="in-progress">
+                  <div id="login-lock"></div>
+                  <canvas id="waves"></canvas>
+                  <div id="login-phone"></div>
+                </div>
+                <div class="success">
+                  <img class="check" src="assets/plugins/idee/assets/images/check.svg" />
+                </div>
+              </div>
+
+              <div id="login-info">
+                <b>Approve Login</b> with your <b>phone</b>.
+              </div>
+
+            </div>
+
+            <!-- End Process Visualization -->
+
+          </div>
+        </div>
+      </div>
+      <span id="poweredbyidee">powered by IDEE</span>
+    </div>
+
+
+
+    <script src="assets/plugins/jquery/jquery-1.11.2.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/plugins/materialize-src/js/materialize.min.js"></script>
+    <script src="assets/plugins/sine-waves/sine-waves.min.js"></script>
+    <script src="assets/plugins/idee/assets/plugins/tingle.min.js"></script>
+    <script src="assets/plugins/idee/assets/plugins/state-machine.min.js"></script>
+    <script src="assets/plugins/idee/assets/js/idee-login.js"></script>
+    <script src="assets/main.js"></script>
+</body>
+
+</html>

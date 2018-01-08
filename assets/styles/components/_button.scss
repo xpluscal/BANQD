@@ -1,0 +1,35 @@
+//main: ../style.scss
+
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the button component.
+// -----------------------------------------------------------------------------
+
+button.button{
+  opacity: 1.0;
+  @include transition(all 1.3s ease);
+}
+
+.button.inactive{
+  opacity: 0.0;
+  @include transition(all 0s ease);
+}
+
+.button.login-button{
+  position: relative;
+  span{
+    position: relative;
+  }
+  span::after{
+    content: '';
+    display: block;
+    background-image: url(assets/images/icons/idee-logo@2x.png);
+    background-size: 18px 16px;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: -28px;
+    top: 50%;
+    margin-top: -8px;
+    width: 18px;
+    height: 16px;
+  }
+}

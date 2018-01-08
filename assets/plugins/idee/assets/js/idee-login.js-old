@@ -1,0 +1,214 @@
+/****************************************
+
+  IDEE GmbH Login State Machine
+  V0.0.1
+  © Calvin Hoenes, 2018
+
+  A js state machine for UI Feedback during IDEE Login/Signing
+
+****************************************/
+
+(function($) {
+  // dude loves closures
+
+
+  /************************************************
+    - VARS -
+  ************************************************/
+
+  var modal, loginMachine, waves, loginWrapper;
+  var animationEnd = 'webkitAnimationEnd oanimationend msAnimationEnd animationend',
+      transitionEnd = 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend';
+
+  /************************************************
+    - PROCEDURE -
+  ************************************************/
+
+  initModal();
+  initLoginMachine();
+
+  /************************************************
+
+    - FUNCTIONS -
+
+  ************************************************/
+
+  function initModal(){
+    // instantiate the modal
+    modal = new tingle.modal({
+        footer: false,
+        stickyFooter: false,
+        closeMethods: [],
+        cssClass: ['test'],
+        onOpen: function() {
+            console.log('modal open');
+        },
+        onClose: function() {
+            console.log('modal closed');
+        },
+        beforeClose: function() {
+            // here's goes some logic
+            // e.g. save content before closing the modal
+            return true; // close the modal
+        	return false; // nothing happens
+        }
+    });
+
+    // set modal content
+    modal.setContent('<div id="login-feedback">\
+        <div id="login-visualization">\
+          <div class="sending visual-state">\
+            <div id="login-lock"></div>\
+            <canvas id="waves"></canvas>\
+            <div id="login-phone"></div>\
+          </div>\
+          <div class="approved visual-state">\
+            <img class="check" src="assets/images/check.svg" />\
+          </div>\
+        </div>\
+        <div id="login-info">...</div>\
+      </div>')
+  }
+
+  function initLoginMachine(){
+
+    // setup state Machine
+    // The statem machine can be easily transitioned in order to get visual represantation of the state.
+    loginMachine = new StateMachine({
+      init: 'idle',
+      transitions: [
+        { name: 'initiate', from: 'idle',  to: 'sending' },
+        { name: 'sent',   from: 'sending', to: 'waiting'  },
+        { name: 'approve', from: 'waiting', to: 'approved'    },
+        { name: 'deny', from: 'waiting',    to: 'denied' },
+        { name: '*', from: 'sending',    to: 'failed' },
+        { name: 'timeout', from: 'waiting',    to: 'timeout' },
+      ],
+      data: function(msg) {      //  <-- use a method that can be called for each instance
+        return {
+          msg: msg
+        }
+      },
+      methods: {
+        onInitiate : function() {
+          console.log('sending');
+          initWaves();
+          modal.open();
+          $('.sending').addClass('visible');
+        },
+        onSent : function() {
+          console.log('sent');
+        },
+        onApprove : function() {
+          console.log('approved')
+          $('.sending').removeClass('visible');
+          $('.sending').one(transitionEnd + animationEnd, function(){
+            $('.approved').addClass('visible');
+          })
+        },
+        onDeny : function() {
+          console.log('denied')
+        },
+        onFail  : function(error) {
+          console.log('failed')
+        },
+        onTimeout  : function() {
+          console.log('timed-out')
+        },
+        onLeaveState : function(fsm, data) {
+          $('#login-info').removeClass('visible');
+        },
+        onEnterState : function(fsm, data){
+          if (data !== undefined && data.msg !== undefined && data.msg !== ''){
+            $('#login-info').one(transitionEnd + animationEnd, function(){
+              $('#login-info').addClass('visible');
+              $('#login-info').html(data.msg);
+            })
+          }
+        },
+      }
+    });
+  }
+
+  function initWaves(){
+    /* WAVES */
+    waves = new SineWaves({
+      // Canvas Element
+      el: document.getElementById('waves'),
+
+      // General speed of entire wave system
+      speed: 9,
+
+      width: function() {
+        return $("#waves").width();
+      },
+
+      height: function() {
+        return $("#waves").height();
+      },
+
+      ease: 'SineInOut',
+
+      // An array of wave options
+      waves: [
+        {
+          timeModifier: 0.75,
+          lineWidth: 1,
+          amplitude: 32,
+          wavelength: 156,
+          segmentLength: 20,
+          strokeStyle: 'rgba(255, 255, 255, 1.0)'
+        },
+        {
+          timeModifier: 1.25,
+          lineWidth: 1,
+          amplitude: 19,
+          wavelength: 72,
+          segmentLength: 10,
+          strokeStyle: 'rgba(255, 255, 255, 1.0)'
+        },
+        {
+          timeModifier: 1.5,
+          lineWidth: 1,
+          amplitude: 27,
+          wavelength: 24,
+          segmentLength: 1,
+          strokeStyle: 'rgba(255, 255, 255, 1.0)'
+        },
+        {
+          timeModifier: 2,
+          lineWidth: 1,
+          amplitude: 6,
+          wavelength: 12,
+          segmentLength: 1,
+          strokeStyle: 'rgba(255, 255, 255, 1.0)'
+        },
+      ],
+
+      // Perform any additional initializations here
+      initialize: function (){},
+
+      // This function is called whenver the window is resized
+      resizeEvent: function() {}
+
+    });
+  }
+
+  /************************************************
+
+    - FOR DEMO -
+
+  ************************************************/
+
+  $('.trigger-login').on('click', function(){
+    // Initiate login process
+    loginMachine.initiate({msg: 'Sending Login Message to Phone...'});
+    setTimeout(function(){
+      loginMachine.sent({msg: 'Please approve Login with your Phone.'});
+      setTimeout(function(){
+        loginMachine.approve({msg: 'Login Approved'});
+      },6000)
+    },1500)
+  });
+
+})(jQuery);

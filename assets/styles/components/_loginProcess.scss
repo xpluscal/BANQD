@@ -1,0 +1,131 @@
+// //main: ../style.scss
+//
+//
+//
+// .modal-dialog {
+//   min-height: calc(100vh - 60px);
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   overflow: auto;
+//   @media(max-width: 768px) {
+//     min-height: calc(100vh - 20px);
+//   }
+// }
+//
+// .modal-content{
+//   background-color: transparent;
+//   -webkit-box-shadow: none;
+//   box-shadow: none;
+//   border: none;
+// }
+//
+// .modal-body{
+//   width: 100%;
+//   display: block;
+//   position: relative;
+// }
+//
+// .modal-backdrop.in{
+//   opacity: .43;
+// }
+//
+// .modal-body{
+//   position: relative;
+// }
+//
+// #login-feedback{
+//   position: relative;
+//   width: 260px;
+//   left: 50%;
+//   margin-left: -130px;
+//
+//
+//   #login-visualization{
+//     width: 100%;
+//     position: relative;
+//     height: 52px;
+//     .in-progress, .success{
+//       width: 100%;
+//       height: 100%;
+//       position: absolute;
+//       opacity: 0.0;
+//       @include transition(all 0.8s ease);
+//       &.visible{
+//         opacity: 1.0;
+//       }
+//     }
+//     #login-lock, #login-phone, #waves{
+//       position: absolute;
+//     }
+//     #login-lock{
+//       width: 36px;
+//       height: 36px;
+//       margin-top: 8px;
+//       background-image: url(assets/plugins/idee/assets/images/lock@2x.png);
+//       background-repeat: no-repeat;
+//       background-size: cover;
+//       background-position: center center;
+//     }
+//     #waves{
+//       width: 156px !important;
+//       height: 52px !important;
+//       left: 52px;
+//     }
+//     #login-phone{
+//       width: 36px;
+//       height: 36px;
+//       right: 0;
+//       margin-top: 8px;
+//       background-image: url(assets/plugins/idee/assets/images/phone@2x.png);
+//       background-repeat: no-repeat;
+//       background-size: cover;
+//       background-position: center center;
+//     }
+//     .check{
+//       width: 32px;
+//       height: 24px;
+//       position: absolute;
+//       top: 10px;
+//       left: 50%;
+//       margin-left: -16px;
+//     }
+//   }
+//   #login-success{
+//     position: absolute;
+//   }
+//   #login-info{
+//     opacity: 0.0;
+//     @include transform(translate3d(0,-20%,0));
+//     @include transition(all 0.55s ease);
+//     @include transition-delay(1.4s);
+//     color: #fff;
+//     text-align: center;
+//     margin-top: 16px;
+//   }
+// }
+//
+// .modal.in{
+//   #login-feedback #login-visualization{
+//     opacity: 1.0;
+//     @include transition-delay(0.3s);
+//   }
+//   #login-feedback #login-info{
+//     opacity: 1.0;
+//     @include transform(translate3d(0,0%,0));
+//   }
+// }
+//
+// #poweredbyidee{
+//   position: absolute;
+//   bottom: 20px;
+//   left: 50%;
+//   margin-left: -39px;
+//   background-image: url(assets/plugins/idee/assets/images/poweredByIDEE@2x.png);
+//   background-size: cover;
+//   background-position: center center;
+//   width: 78px;
+//   height: 19px;
+//   font-size: 0.0px;
+//   color: rgba(0,0,0,0);
+// }
