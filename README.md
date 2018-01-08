@@ -16,5 +16,6 @@ cd banqd
 
 # The IDEE Plugin
 
-> The IDEE Plugin is basically a deterministic state machine that acts as a UI state for the different states of the login process.
+The IDEE Plugin is basically a deterministic state machine that acts as a UI state for the different states of the login process.
+<br>
 ![alt IDEE state machine login flow](https://raw.githubusercontent.com/xpluscal/banqd/master/assets/images/SDKLoginFlowUI.jpeg)
