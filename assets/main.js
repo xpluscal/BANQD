@@ -9,56 +9,95 @@
 
   **********************************************************************************************/
 
-  /* FUNCTION THAT MAKES AJAX REQUEST */
-  function login() {
-    $.ajax({
-      type: "POST",
-      url: "login.php",
-      // data: {…},
-      beforeSend: function(){
-        //
-      },
-      success: function (results) {
-        //
-      }
-    });
-  }
-
-  /* FAKE AJAX RESPONSE */
-  function ajax_response(response, success) {
-    return function (params) {
-      if (success) {
-        params.success(response);
-      } else {
-        params.error(response);
-      }
-    };
-  }
-
-  /* LOGIN */
-  var $loginForm = $('#login-form');
-  $loginForm.submit(function(e) {
-  	e.preventDefault();
-
-    // In this case the form does nothing but it would trigger ajax and open modal
-
-    // $.ajax = ajax_response('{"success": "true"}', true);
-    // login();
-  });
-
   var idee = new IDEELogin();
+  var timeout;
+  var test_checks;
+  var TEST_CHECK_LIMIT = 30;
+  var SESSION_LENGTH_CONST = 900000;//15 minutes
+  var KEEPALIVE_PERIOD_CONST = 450000; //7,5 minutes
+
   idee.init();
 
-  $('.trigger-login').on('click', function(){
-    idee.setState('initiate', {msg: 'Sending Login Message to Phone...'});
-    setTimeout(function(){
-      idee.setState('hasSent', {msg: 'Please approve Login with your Phone.'});
-      setTimeout(function(){
-        idee.setState('approve', {msg: 'Login Approved', callback: fadeToPage, url: 'dashboard.html'});
-      },6000)
-    },1500)
+  function show_session_state(result_text) {
+      // $("#session_state").text(result_text);
+      // $("#session_state").show(1000);
+  }
+
+  function hide_session_state() {
+      // $("#session_state").text("Not logged in");
+      // $("#session_state").show(1000);
+  }
+
+  function enable_sections() {
+      $("#login-form").children().prop("disabled", false);
+  }
+
+  function disable_sections() {
+      $("#login-form").children().prop("disabled", true);
+  }
+
+  var login_checks;
+  var LOGIN_CHECK_LIMIT = 30;
+
+  $("#login-button").click(function() {
+      $.ajax({
+          type: 'POST',
+          url: '/login',
+          data: { email: $("#login-email").prop("value") },
+          success: function(resp) {
+
+              idee.setState('initiate', {msg: 'Sending Login Message to Phone...'});
+              setTimeout(function(){
+                idee.setState('hasSent', {msg: 'Please approve Login with your Phone.'});
+              },1500)
+
+              /* Start the timer */
+              login_checks = 0;
+              setTimeout(login_check, 1000);
+              disable_sections();
+
+          },
+          error: function(xhr) {
+          }
+      });
   });
 
+
+  function login_check() {
+      if (login_checks++ > LOGIN_CHECK_LIMIT) {
+          enable_sections();
+          return;
+      }
+
+      $.ajax({
+          type: 'GET',
+          url: '/login/logincheck',
+          success: function(ret) {
+              if (!ret) {
+                  /* Continue checking */
+                  setTimeout(login_check, 1000);
+              } else {
+                  idee.setState('approve', {msg: 'Transaction Approved', callback: fadeToPage, url: 'dashboard.html'});
+                  // enable_sections();
+              }
+          },
+          error: function() {
+              setTimeout(login_check, 1000);
+          }
+      });
+  }
+
+  // $('.trigger-login').on('click', function(){
+  //   idee.setState('initiate', {msg: 'Sending Login Message to Phone...'});
+  //   setTimeout(function(){
+  //     idee.setState('hasSent', {msg: 'Please approve Login with your Phone.'});
+  //     setTimeout(function(){
+  //       idee.setState('approve', {msg: 'Login Approved', callback: fadeToPage, url: 'dashboard.html'});
+  //     },6000)
+  //   },1500)
+  // });
+  //
+  
   $('.trigger-sign').on('click', function(){
     idee.setState('initiate', {msg: 'Sending Signing Message to Phone...'});
     setTimeout(function(){
@@ -83,7 +122,7 @@
   }
 
   function fadeToSuccess(){
-    
+
   }
 
 
