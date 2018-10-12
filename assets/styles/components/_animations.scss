@@ -2,8 +2,8 @@
 
 /* The animation code */
 @keyframes logoText {
-    0% {opacity: 0.0; @include transform(translate3d(0,70%,0) scale(0.92)); text-shadow: 0px 0px 80px rgba(255,255,255,0.0)}
-    50% {opacity: 1.0; @include transform(translate3d(0,70%,0) scale(1)); text-shadow: 0px 0px 80px rgba(255,255,255,0.3)}
+    0% {opacity: 0.0; @include transform(translate3d(0,180%,0) scale(0.92)); text-shadow: 0px 0px 80px rgba(255,255,255,0.0)}
+    50% {opacity: 1.0; @include transform(translate3d(0,180%,0) scale(1)); text-shadow: 0px 0px 80px rgba(255,255,255,0.3)}
     100% {opacity: 1.0; @include transform(translate3d(0,0%,0))}
 }
 
@@ -29,9 +29,9 @@
     opacity: 0.0;
     @include transform-origin(50% 50%);
     animation-name: logoText;
-    animation-duration: 1.9s;
+    animation-duration: 1.0s;
     animation-timing-function: ease;
-    animation-delay: 1.2s;
+    animation-delay: 0.4s;
     animation-fill-mode: forwards;
 }
 
@@ -41,8 +41,8 @@
     opacity: 0.0;
     @include transform-origin(50% 0%);
     animation-name: loginWrapper;
-    animation-duration: 0.8s;
-    animation-delay: 2.9s;
+    animation-duration: 0.4s;
+    animation-delay: 1.3s;
     animation-fill-mode: forwards;
 }
 
