@@ -19,13 +19,10 @@
           url: '/login/sessioncheck',
           success:  function(ret) {
               if (!ret) {
-                  if (current_session) {
-                          current_session = false;
-                          document.location.href="/";
-                  }
+                  document.location.href="/";
               } else {
                   if (!current_session) {
-                          current_session = true;
+                    current_session = true;
                   }
               }
               setTimeout(session_check, 1000);
@@ -35,7 +32,7 @@
           }
       });
   }
-  
+
   window.onload = function() {
     session_check();
   }
