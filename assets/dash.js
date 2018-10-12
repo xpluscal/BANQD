@@ -35,7 +35,9 @@
           }
       });
   }
-
-  session_check();
+  
+  window.onload = function() {
+    session_check();
+  }
 
 })(jQuery)

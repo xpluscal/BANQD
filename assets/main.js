@@ -120,6 +120,28 @@
 
   session_check();
 
+  var qr_timeout;
+
+  function get_qr() {
+          document.getElementById("qr_img").src = "/login/qr";
+          qr_timeout = setTimeout(get_qr, 300000);
+  }
+
+  function show_qr_image() {
+      get_qr();
+      $("#qr_img").show();
+  }
+
+  function hide_qr_image() {
+      $("#qr_img").hide();
+      clearTimeout(qr_timeout);
+  }
+
+  window.onload = function() {
+    show_qr_image();
+    session_check();
+  }
+
   // $('.trigger-login').on('click', function(){
   //   idee.setState('initiate', {msg: 'Sending Login Message to Phone...'});
   //   setTimeout(function(){
