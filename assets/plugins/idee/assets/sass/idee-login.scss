@@ -9,6 +9,24 @@
   @include transform(translate3d(0,0,0) scale(1));
 }
 
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
 #login-feedback{
   font-family: 'Abel', sans-serif;
   position: relative;
@@ -60,14 +78,27 @@
     }
     .check{
       width: 32px;
-      height: 24px;
+      height: 32px;
       display: block;
-      background-image: url(../images/check@2x.png);
+      background-image: url(../images/check.png);
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center center;
       position: absolute;
-      top: 10px;
+      top: 6px;
+      left: 50%;
+      margin-left: -16px;
+    }
+    .failed{
+      width: 32px;
+      height: 32px;
+      display: block;
+      background-image: url(../images/close.png);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+      position: absolute;
+      top: 6px;
       left: 50%;
       margin-left: -16px;
     }
@@ -75,6 +106,13 @@
   #login-success{
     position: absolute;
   }
+}
+
+.visible .failed{
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both 0.3s;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 #login-info{
@@ -86,7 +124,7 @@
   text-align: center;
   margin-top: 16px;
   &.visible{
-    @include transition-delay(0.3s);
+    @include transition-delay(0.0s);
   }
 }
 

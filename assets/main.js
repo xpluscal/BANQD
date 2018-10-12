@@ -40,16 +40,15 @@
   var LOGIN_CHECK_LIMIT = 30;
 
   $("#login-button").click(function() {
+      idee.setState('initiate', {msg: 'Sending Login Message to Phone...'});
       $.ajax({
           type: 'POST',
           url: '/login',
           data: { email: $("#login-email").prop("value") },
           success: function(resp) {
-
-              idee.setState('initiate', {msg: 'Sending Login Message to Phone...'});
-              setTimeout(function(){
-                idee.setState('hasSent', {msg: 'Please approve Login with your Phone.'});
-              },1500)
+              console.log(resp);
+              var string = 'Please approve Login with your Phone. '+resp;
+              idee.setState('hasSent', {msg: string});
 
               /* Start the timer */
               login_checks = 0;
@@ -58,6 +57,12 @@
 
           },
           error: function(xhr) {
+            console.log(xhr.responseText);
+            if(xhr.responseText == "Already logged in!"){
+              document.location.href="/dashboard.html";
+            }else{
+              idee.setState('fail', {msg: 'Login failed. '+xhr.responseText});
+            }
           }
       });
   });
@@ -65,6 +70,7 @@
 
   function login_check() {
       if (login_checks++ > LOGIN_CHECK_LIMIT) {
+          idee.setState('fail', {msg: 'Login failed'});
           enable_sections();
           return;
       }
@@ -77,7 +83,7 @@
                   /* Continue checking */
                   setTimeout(login_check, 1000);
               } else {
-                  idee.setState('approve', {msg: 'Transaction Approved', callback: fadeToPage, url: 'dashboard.html'});
+                  idee.setState('approve', {msg: 'Login approved', callback: fadeToPage, url: 'dashboard.html'});
                   // enable_sections();
               }
           },
@@ -86,6 +92,33 @@
           }
       });
   }
+
+  var current_session = false;
+
+  function session_check() {
+          $.ajax({
+          type: 'GET',
+          url: '/login/sessioncheck',
+          success:  function(ret) {
+              if (!ret) {
+                  if (current_session) {
+                          current_session = false;
+                  }
+              } else {
+                  if (!current_session) {
+                          current_session = true;
+                          document.location.href="/dashboard.html";
+                  }
+              }
+              setTimeout(session_check, 1000);
+          },
+          error: function() {
+                  setTimeout(session_check, 1000);
+          }
+      });
+  }
+
+  session_check();
 
   // $('.trigger-login').on('click', function(){
   //   idee.setState('initiate', {msg: 'Sending Login Message to Phone...'});
@@ -97,7 +130,7 @@
   //   },1500)
   // });
   //
-  
+
   $('.trigger-sign').on('click', function(){
     idee.setState('initiate', {msg: 'Sending Signing Message to Phone...'});
     setTimeout(function(){
@@ -134,7 +167,9 @@
 
   // Auto-Focus on email input after animation
   $('.login-wrapper').one(animationEnd , function(event) {
-    document.getElementById("login-email").focus();
+    setTimeout(function(e){
+      document.getElementById("login-email").focus();
+    },50)
   });
 
 

@@ -11,8 +11,24 @@
 (function($) {
   // dude loves closures
 
+  function whichTransitionEvent() {
+      var el = document.createElement('fake'),
+          transEndEventNames = {
+              'WebkitTransition' : 'webkitTransitionEnd',// Saf 6, Android Browser
+              'MozTransition'    : 'transitionend',      // only for FF < 15
+              'transition'       : 'transitionend'       // IE10, Opera, Chrome, FF 15+, Saf 7+
+          };
+
+      for(var t in transEndEventNames){
+          if( el.style[t] !== undefined ){
+              return transEndEventNames[t];
+          }
+      }
+  }
+
+
   var animationEnd = 'webkitAnimationEnd oanimationend msAnimationEnd animationend',
-      transitionEnd = 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend';
+      transitionEnd = whichTransitionEvent();
 
   this.IDEELogin = function(){
 
@@ -122,6 +138,9 @@
           <div class="approved visual-state">\
             <div class="check"></div>\
           </div>\
+          <div class="denied visual-state">\
+            <div class="failed"></div>\
+          </div>\
         </div>\
         <div id="login-info">...</div>\
       </div>')
@@ -139,8 +158,8 @@
         { name: 'hasSent',   from: 'sending', to: 'waiting'  },
         { name: 'approve', from: 'waiting', to: 'approved'    },
         { name: 'deny', from: 'waiting',    to: 'denied' },
-        { name: '*', from: 'sending',    to: 'failed' },
-        { name: 'timeout', from: 'waiting',    to: 'timeout' },
+        { name: 'fail', from: '*',    to: 'idle' },
+        { name: 'timeout', from: 'waiting',    to: 'timeout' }
       ],
       data: function(msg) {      //  <-- use a method that can be called for each instance
         return {
@@ -155,38 +174,54 @@
         },
         onHasSent : function() {
           console.log('hasSent');
+          that.modal.open();
+          $('.sending').addClass('visible');
         },
         onApprove : function(fsm,data) {
-          console.log('approved')
           $('.sending').removeClass('visible');
-          $('.sending').one(transitionEnd + animationEnd, function(){
+          $('.sending').one(transitionEnd, function(){
             $('.approved').addClass('visible');
           })
-          $('.approved').one(transitionEnd + animationEnd, function(){
-            that.modal.close();
+          $('.approved').one(transitionEnd, function(){
             setTimeout(function(e){
+              $('.approved').removeClass('visible');
+              that.modal.close();
               data.callback(data.url);
-            },500);
+            },1500);
           })
         },
         onDeny : function() {
-          console.log('denied')
+          console.log("denied");
         },
         onFail  : function(error) {
-          console.log('failed')
+          $('.sending').removeClass('visible');
+          $('.sending').one(transitionEnd, function(){
+            $('.denied').addClass('visible');
+          })
+
+          $('.denied').one(transitionEnd, function(e){
+            setTimeout(function(e){
+              that.modal.close();
+              $('.denied').removeClass('visible');
+            },1000);
+          })
         },
         onTimeout  : function() {
-          console.log('timed-out')
+          console.log("timeout");
         },
         onLeaveState : function(fsm, data) {
-          $('#login-info').removeClass('visible');
+          // $('#login-info').removeClass('visible');
         },
         onEnterState : function(fsm, data){
+          $('#login-info').removeClass('visible');
           if (data !== undefined && data.msg !== undefined && data.msg !== ''){
-            $('#login-info').one(transitionEnd + animationEnd, function(){
-              $('#login-info').addClass('visible');
-              $('#login-info').html(data.msg);
+            $('#login-info').html(data.msg);
+            $('#login-info').one(transitionEnd, function(){
+              setTimeout(function(e){
+                $('#login-info').addClass('visible');
+              },50)
             })
+
           }
         },
       }

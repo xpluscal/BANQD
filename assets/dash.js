@@ -5,7 +5,6 @@
           type: 'GET',
           url: '/login/logout',
           success: function(resp) {
-              show_session_state("Not logged in");
           },
           error: function(xhr) {
           }

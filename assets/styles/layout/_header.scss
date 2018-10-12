@@ -5,13 +5,13 @@
 
 
 .hero-area{
-    background: linear-gradient(#04153C,#000000);
+    background-image: url(assets/images/backgrounds/background-web.jpg);
+    background-size: cover;
+    background-position: center;
     text-align: center;
     padding: 15px;
 
     min-height: 100vh;
-
-    @include media-width(650){ min-height: 40vh }
 
     display: flex;
     margin-bottom: 8em;
@@ -30,16 +30,16 @@
           color: #fff;
           font-weight: 100;
           position: relative;
-          &:after{
-            position: absolute;
-            content: '';
-            bottom: -10px;
-            width: 80px;
-            left: 50%;
-            margin-left: -40px;
-            height: 1px;
-            background-color: #434343;
-          }
+          // &:after{
+          //   position: absolute;
+          //   content: '';
+          //   bottom: -10px;
+          //   width: 80px;
+          //   left: 50%;
+          //   margin-left: -40px;
+          //   height: 1px;
+          //   background-color: #434343;
+          // }
         }
         h1{
             font-size: 6em;
