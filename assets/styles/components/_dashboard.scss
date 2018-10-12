@@ -6,6 +6,10 @@ body#dashboard,html{
   position: relative;
 }
 
+.text-black{
+  color: #000 !important;
+}
+
 body#dashboard{
 
   &::before {
