@@ -123,12 +123,13 @@
   var qr_timeout;
 
   function get_qr() {
-          document.getElementById("qr_img").src = "/login/qr";
-          qr_timeout = setTimeout(get_qr, 300000);
+      document.getElementById("qr_img").src = "/login/qr";
+      qr_timeout = setTimeout(get_qr, 300000);
   }
 
   function show_qr_image() {
       get_qr();
+      $(".qr-loader").hide();
       $("#qr_img").show();
   }
 
@@ -141,17 +142,6 @@
     show_qr_image();
     session_check();
   }
-
-  // $('.trigger-login').on('click', function(){
-  //   idee.setState('initiate', {msg: 'Sending Login Message to Phone...'});
-  //   setTimeout(function(){
-  //     idee.setState('hasSent', {msg: 'Please approve Login with your Phone.'});
-  //     setTimeout(function(){
-  //       idee.setState('approve', {msg: 'Login Approved', callback: fadeToPage, url: 'dashboard.html'});
-  //     },6000)
-  //   },1500)
-  // });
-  //
 
   $('.trigger-sign').on('click', function(){
     idee.setState('initiate', {msg: 'Sending Signing Message to Phone...'});
