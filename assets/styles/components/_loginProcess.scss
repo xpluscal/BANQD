@@ -24,6 +24,18 @@
   margin: 0;
 }
 
+_::-webkit-full-page-media, _:future, :root .safari_only {
+
+  #qr_img{
+    padding: 48px;
+    @media(max-width: 767px){
+      padding: 24px;
+    }
+  }
+
+}
+
+
 .qr-tutorial{
   display: block;
   text-align: center;
