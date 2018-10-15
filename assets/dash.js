@@ -1,6 +1,6 @@
 (function($) {
 
-  $("#logout-button").click(function() {
+  $(".logout-button").click(function() {
       $.ajax({
           type: 'GET',
           url: '/login/logout',
@@ -9,17 +9,6 @@
           error: function(xhr) {
           }
       });
-  });
-
-  document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.sidenav');
-    var instances = M.Sidenav.init(elems, options);
-  });
-
-  // Or with jQuery
-
-  $(document).ready(function(){
-    $('.sidenav').sidenav();
   });
 
   var current_session = false;
