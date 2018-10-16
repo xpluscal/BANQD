@@ -11,7 +11,8 @@
 
 
   var pref = Cookies.get('email');
-  if(pref == undefined){
+  console.log(pref);
+  if(pref == undefined || pref == ''){
     $("#qr-login").addClass('active');
   }else{
     $("#email-login").addClass('active');
