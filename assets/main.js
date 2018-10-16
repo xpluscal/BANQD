@@ -5,7 +5,53 @@
 
   /*********************************************************************************************
 
-  FAKE AJAX REQUEST & LOGIN
+  CHECK LOGIN PREFERENCE
+
+  **********************************************************************************************/
+
+
+  var pref = Cookies.get('email');
+  if(pref == undefined){
+    $("#qr-login").addClass('active');
+  }else{
+    $("#email-login").addClass('active');
+  }
+
+  $('#switch-to-email').on('click', function(){
+    $("#qr-login").removeClass('active');
+    $("#email-login").addClass('active');
+    Cookies.set('email', 'yes', { expires: 7 });
+  })
+
+  $('#switch-to-qr').on('click', function(){
+    $("#email-login").removeClass('active');
+    $("#qr-login").addClass('active');
+    Cookies.remove('email');
+  })
+
+  // Auto-Focus on email input after animation
+  $('#email-login').one(animationEnd , function(event) {
+    setTimeout(function(e){
+      document.getElementById("login-email").focus();
+    },50)
+  });
+
+
+  // Check if input is valid and display button if true
+  $('#login-email').on('focus keyup keypress change blur keydown input', function(){
+    if($(this).is(':invalid')){
+      $('.login-submit').addClass('inactive');
+    }else{
+      console.log("READY!");
+      $('.login-submit').removeClass('inactive');
+    }
+  });
+
+
+
+  /*********************************************************************************************
+
+  LOGIN
 
   **********************************************************************************************/
 
@@ -118,7 +164,19 @@
       });
   }
 
-  session_check();
+  window.onload = function() {
+    session_check();
+  }
+
+  $('.trigger-sign').on('click', function(){
+    idee.setState('initiate', {msg: 'Sending Signing Message to Phone...'});
+    setTimeout(function(){
+      idee.setState('hasSent', {msg: 'Please approve Transaction with your Phone.'});
+      setTimeout(function(){
+        idee.setState('approve', {msg: 'Transaction Approved', callback: fadeToPage, url: 'dashboard.html'});
+      },6000)
+    },1500)
+  });
 
   var qr_timeout;
 

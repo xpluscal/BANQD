@@ -28,31 +28,45 @@
           <div class="login-body">
             <span class="logo-text">BANQD</span>
             <div class="login-wrapper">
-              <div class="qr-wrapper">
-                <img id="qr_img" src="assets/images/backgrounds/qr-loading.jpg" />
-                <div class="qr-loader">
-                  <div class="sk-fading-circle">
-                    <div class="sk-circle1 sk-circle"></div>
-                    <div class="sk-circle2 sk-circle"></div>
-                    <div class="sk-circle3 sk-circle"></div>
-                    <div class="sk-circle4 sk-circle"></div>
-                    <div class="sk-circle5 sk-circle"></div>
-                    <div class="sk-circle6 sk-circle"></div>
-                    <div class="sk-circle7 sk-circle"></div>
-                    <div class="sk-circle8 sk-circle"></div>
-                    <div class="sk-circle9 sk-circle"></div>
-                    <div class="sk-circle10 sk-circle"></div>
-                    <div class="sk-circle11 sk-circle"></div>
-                    <div class="sk-circle12 sk-circle"></div>
+              <div id="qr-login" class="login-method">
+                <div class="qr-wrapper">
+                  <img id="qr_img" src="assets/images/backgrounds/qr-loading.jpg" />
+                  <div class="qr-loader">
+                    <div class="sk-fading-circle">
+                      <div class="sk-circle1 sk-circle"></div>
+                      <div class="sk-circle2 sk-circle"></div>
+                      <div class="sk-circle3 sk-circle"></div>
+                      <div class="sk-circle4 sk-circle"></div>
+                      <div class="sk-circle5 sk-circle"></div>
+                      <div class="sk-circle6 sk-circle"></div>
+                      <div class="sk-circle7 sk-circle"></div>
+                      <div class="sk-circle8 sk-circle"></div>
+                      <div class="sk-circle9 sk-circle"></div>
+                      <div class="sk-circle10 sk-circle"></div>
+                      <div class="sk-circle11 sk-circle"></div>
+                      <div class="sk-circle12 sk-circle"></div>
+                    </div>
                   </div>
                 </div>
+                <span class="qr-tutorial">Scan QR code to login</span>
+                <span href="#email" class="method-switch" id="switch-to-email">Login using email instead</span>
               </div>
-              <span class="qr-tutorial">Scan QR code to login</span>
+              <div id="email-login" class="login-method">
+                <div id="login-form">
+                  <div class="form-group">
+                    <input id="login-email" type="email" name="Email" required="required">
+                    <label class="control-label" for="input">E-Mail</label><i class="bar"></i>
+                  </div>
+                </div>
+                <button class="button login-submit login-button inactive trigger-login" id="login-button" value="Login"><span>Login</span></button>
+                <span href="#qr" class="method-switch" id="switch-to-qr">Login using QR code instead</span>
+              </div>
             </div>
           </div>
         </div>
     </header>
 
+    <script src="assets/plugins/cookie/js.cookie.js"></script>
     <script src="assets/plugins/jquery/jquery-1.11.2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
